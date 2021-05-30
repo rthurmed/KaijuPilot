@@ -193,6 +193,21 @@ position = Vector2( 178, 8 )
 [node name="Building1-20" parent="Buildings" instance=ExtResource( 5 )]
 position = Vector2( 379, 0 )
 
+[node name="Building1-21" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 307, 0 )
+
+[node name="Building1-22" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( -202, 5 )
+
+[node name="Building1-23" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( -360, 5 )
+
+[node name="Building1-24" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( -276, 5 )
+
+[node name="Building1-25" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 87, 0 )
+
 [node name="Kaijus" type="Node2D" parent="."]
 position = Vector2( -1, 28 )
 
@@ -207,6 +222,9 @@ position = Vector2( -407, 0 )
 
 [node name="Jupiter4" parent="Kaijus" instance=ExtResource( 8 )]
 position = Vector2( 230, 0 )
+
+[node name="Jupiter5" parent="Kaijus" instance=ExtResource( 8 )]
+position = Vector2( -281, 0 )
 
 [node name="Pilot" parent="." instance=ExtResource( 3 )]
 position = Vector2( 28, -61 )
