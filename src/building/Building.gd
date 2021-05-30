@@ -17,11 +17,13 @@ func _ready():
 
 
 func _on_Life_damage(_damage):
-	sprite.frame = total_frames - floor(life.percent() * total_frames)
+	var frame = total_frames - floor(life.percent() * total_frames)
 	if life.total <= 0:
-		sprite.frame = total_frames - 1
+		frame = total_frames - 1
+	sprite.frame = frame
 
 
 func _on_Life_death():
-	collision.disabled = true
+	collision.set_deferred("disabled", true)
 	emit_signal("death")
+	queue_free()

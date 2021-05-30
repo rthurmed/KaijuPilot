@@ -19,9 +19,12 @@ func exit(): pass
 
 func _on_AttackArea_body_entered(body):
 	if(
-		body.has_node("Life") and 
-		(
-			(kaiju.seeking_enemy and body.is_in_group("kaiju")) or
+		body.has_node("Life") and (
+			(
+				kaiju.seeking_enemy and
+				body.is_in_group("kaiju") and
+				body.name != kaiju.name
+			) or
 			body.is_in_group("building")
 		)
 	):

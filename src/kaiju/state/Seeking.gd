@@ -27,7 +27,10 @@ func _on_ViewingArea_body_exited(body):
 
 
 func _on_Delay_timeout():
+	if not active(): return
+	
 	# Search new position
+	var found_building_target = false
 	kaiju.seeking_enemy = false
 	var target = kaiju.global_position + Vector2(100, 0)
 	
@@ -37,7 +40,12 @@ func _on_Delay_timeout():
 			target = body.global_position
 			kaiju.seeking_enemy = true
 		
-		if not kaiju.seeking_enemy and body.is_in_group("building"): 
+		if (
+			not kaiju.seeking_enemy and
+			not found_building_target and
+			body.is_in_group("building")
+		): 
+			found_building_target = true
 			target = body.global_position
 	
 	kaiju.target_position = target

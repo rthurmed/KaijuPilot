@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/font/default_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/backdrop-city.png" type="Texture" id=2]
@@ -30,6 +30,21 @@ extents = Vector2( 484, 4 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 24, 362 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "end"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/UI/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 6 )
@@ -70,6 +85,15 @@ rect_scale = Vector2( 0.3, 0.3 )
 custom_fonts/font = ExtResource( 1 )
 text = "Press ? for help"
 valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -121,6 +145,39 @@ position = Vector2( -224, 0 )
 [node name="Building1-9" parent="Buildings" instance=ExtResource( 5 )]
 position = Vector2( 199, 0 )
 
+[node name="Building1-10" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 282, 0 )
+
+[node name="Building1-11" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( -157, 3 )
+
+[node name="Building1-12" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 346, 0 )
+
+[node name="Building1-13" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 252, 4 )
+
+[node name="Building1-14" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 413, 4 )
+
+[node name="Building1-15" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( -332, 4 )
+
+[node name="Building1-16" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( -255, 1 )
+
+[node name="Building1-17" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 320, 1 )
+
+[node name="Building1-18" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( -293, -1 )
+
+[node name="Building1-19" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 178, 8 )
+
+[node name="Building1-20" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 379, 0 )
+
 [node name="Kaijus" type="Node2D" parent="."]
 position = Vector2( -1, 28 )
 
@@ -128,6 +185,9 @@ position = Vector2( -1, 28 )
 
 [node name="Jupiter2" parent="Kaijus" instance=ExtResource( 8 )]
 position = Vector2( -73, 0 )
+
+[node name="Jupiter3" parent="Kaijus" instance=ExtResource( 8 )]
+position = Vector2( -407, 0 )
 
 [node name="Pilot" parent="." instance=ExtResource( 3 )]
 position = Vector2( 28, -61 )
@@ -137,9 +197,9 @@ z_index = 2
 position = Vector2( 0, -7 )
 current = true
 zoom = Vector2( 0.9, 0.9 )
-limit_left = -472
+limit_left = -436
 limit_top = -52
-limit_right = 472
+limit_right = 436
 limit_bottom = 28
 smoothing_enabled = true
 drag_margin_top = 1.0
@@ -161,7 +221,7 @@ shape = SubResource( 1 )
 [node name="Wall1" type="StaticBody2D" parent="." groups=[
 "floor",
 ]]
-position = Vector2( -496, 33 )
+position = Vector2( -458, 33 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
 position = Vector2( 0, -362 )
@@ -170,10 +230,14 @@ shape = SubResource( 2 )
 [node name="Wall2" type="StaticBody2D" parent="." groups=[
 "floor",
 ]]
-position = Vector2( 496, 33 )
+position = Vector2( 459, 33 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
 position = Vector2( 0, -362 )
 shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/end = SubResource( 4 )
 [connection signal="mounted" from="Pilot" to="." method="_on_Pilot_mounted"]
 [connection signal="unmounted" from="Pilot" to="." method="_on_Pilot_unmounted"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
