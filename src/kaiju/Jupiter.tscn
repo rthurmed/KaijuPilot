@@ -1,0 +1,159 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/kaiju1-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/anim/kaiju/possess.tres" type="Animation" id=2]
+[ext_resource path="res://src/core/CollisionSpriteManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/kaiju/Jupiter.gd" type="Script" id=4]
+[ext_resource path="res://src/core/Life.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=2]
+resource_name = "attack"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.4
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="CircleShape2D" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 23, 26 )
+
+[node name="Jupiter" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 4 )
+
+[node name="Flip" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Flip"]
+modulate = Color( 0.882353, 0.254902, 0.254902, 1 )
+position = Vector2( 0, -30 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 4
+frame = 3
+
+[node name="CollisionSpriteManager2" parent="Flip" instance=ExtResource( 3 )]
+path_sprite = NodePath("../Sprite")
+initial_frame = "0"
+
+[node name="0" type="KinematicBody2D" parent="Flip/CollisionSpriteManager2"]
+visible = false
+position = Vector2( 0, 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flip/CollisionSpriteManager2/0"]
+polygon = PoolVector2Array( -5, -45, -11, -45, -12, -47, -15, -47, -18, -44, -21, -49, -17, -54, -19, -60, -22, -60, -23, -62, -26, -62, -28, -58, -30, -45, -27, -36, -21, -30, -16, -32, -14, -32, -12, -29, -16, -28, -20, -27, -24, -23, -24, -18, -21, -12, -18, -9, -19, -8, -23, -8, -24, -5, -24, -2, -12, -2, -7, -8, -8, -16, 1, -16, -1, -7, 5, -2, 15, -2, 16, -6, 14, -8, 11, -8, 13, -22, 9, -27, 10, -28, 18, -22, 31, -32, 29, -35, 28, -40, 24, -40, 18, -31, 13, -38, 10, -39, 14, -45, 14, -48, 3, -54, -1, -54, -5, -50 )
+
+[node name="1" type="KinematicBody2D" parent="Flip/CollisionSpriteManager2"]
+visible = false
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Flip/CollisionSpriteManager2/1"]
+position = Vector2( -15, 9 )
+polygon = PoolVector2Array( -5, -47, -5, -53, -1, -57, 4, -57, 10, -57, 10, -62, 14, -66, 18, -66, 29, -61, 30, -57, 25, -53, 28, -49, 34, -35, 45, -31, 40, -23, 28, -31, 23.4691, -39.9382, 20.2572, -33.5144, 26, -26, 26, -15, 31, -12, 30, -8, 17, -8, 14, -15, 15, -23, 10, -25, 8, -16, 13, -12, 11, -9, -4, -9, -7, -14, -2, -27, -1, -45 )
+one_way_collision = true
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Flip/CollisionSpriteManager2/1"]
+position = Vector2( -15, 9 )
+polygon = PoolVector2Array( -9, -41, -2, -31, 4, -24, 8, -23, 12, -31, 6, -34, 0, -42, 0, -49, -2, -56, -6, -51 )
+one_way_collision = true
+
+[node name="2" type="KinematicBody2D" parent="Flip/CollisionSpriteManager2"]
+visible = false
+position = Vector2( 0, 2 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Flip/CollisionSpriteManager2/2"]
+position = Vector2( -15, 9 )
+polygon = PoolVector2Array( -5, -47, -5, -53, -1, -57, 4, -57, 10, -57, 10, -62, 14, -66, 19, -66, 30, -60, 30, -57, 25, -53, 28, -49, 34, -35, 45, -31, 40, -23, 28, -31, 23.4691, -39.9382, 20.2572, -33.5144, 28, -27, 34, -17, 38, -16, 39, -11, 27, -11, 16, -24, 10, -25, -1, -19, 5, -14, 3, -11, -12, -11, -15, -15, -11, -23, -3, -30, -1, -45 )
+one_way_collision = true
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Flip/CollisionSpriteManager2/2"]
+position = Vector2( -15, 9 )
+polygon = PoolVector2Array( -9, -41, -2, -31, 4, -24, 8, -23, 12, -31, 6, -34, 0, -42, 0, -49, -1, -57, -6, -51 )
+one_way_collision = true
+
+[node name="3" type="KinematicBody2D" parent="Flip/CollisionSpriteManager2"]
+visible = false
+position = Vector2( 0, 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flip/CollisionSpriteManager2/3"]
+polygon = PoolVector2Array( -5, -45, -11, -45, -12, -47, -15, -47, -18, -44, -21, -49, -17, -54, -19, -60, -22, -60, -23, -62, -26, -62, -28, -58, -30, -45, -27, -36, -21, -30, -16, -32, -14, -32, -12, -29, -16, -28, -20, -27, -24, -23, -24, -18, -21, -12, -18, -9, -19, -8, -23, -8, -24, -5, -24, -2, -12, -2, -7, -8, -8, -16, 1, -16, -1, -7, 5, -2, 15, -2, 16, -6, 14, -8, 11, -8, 13, -22, 9, -27, 11, -29, 24, -29, 30, -32, 30, -38, 25, -52, 22, -56, 16, -53, 17, -50, 15, -48, 18, -43, 20, -38, 10, -39, 14, -45, 14, -48, 3, -54, -1, -54, -5, -50 )
+
+[node name="4" type="KinematicBody2D" parent="Flip/CollisionSpriteManager2"]
+visible = false
+position = Vector2( 0, 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flip/CollisionSpriteManager2/4"]
+polygon = PoolVector2Array( -5, -45, -11, -45, -12, -47, -15, -47, -18, -44, -21, -49, -17, -54, -19, -60, -22, -60, -23, -62, -26, -62, -28, -58, -30, -45, -27, -36, -21, -30, -16, -32, -14, -32, -12, -29, -16, -28, -20, -27, -24, -23, -24, -18, -21, -12, -18, -9, -19, -8, -23, -8, -24, -5, -24, -2, -12, -2, -7, -8, -8, -16, 1, -16, -1, -7, 5, -2, 15, -2, 16, -6, 14, -8, 11, -8, 13, -22, 9, -27, 11, -29, 19, -23, 26, -24, 39, -36, 36, -42, 30, -42, 22, -33, 10, -39, 14, -45, 14, -48, 3, -54, -1, -54, -5, -50 )
+
+[node name="5" type="KinematicBody2D" parent="Flip/CollisionSpriteManager2"]
+visible = false
+position = Vector2( 0, 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flip/CollisionSpriteManager2/5"]
+polygon = PoolVector2Array( -5, -45, -11, -45, -12, -47, -15, -47, -18, -44, -21, -49, -17, -54, -19, -60, -22, -60, -23, -62, -26, -62, -28, -58, -30, -45, -27, -36, -21, -30, -16, -32, -14, -32, -12, -29, -16, -28, -20, -27, -24, -23, -24, -18, -21, -12, -18, -9, -19, -8, -23, -8, -24, -5, -24, -2, -12, -2, -7, -8, -8, -16, 1, -16, -1, -7, 5, -2, 15, -2, 16, -6, 14, -8, 11, -8, 13, -22, 9, -27, 10, -28, 18, -22, 31, -32, 29, -35, 28, -40, 24, -40, 18, -31, 13, -38, 10, -39, 14, -45, 14, -48, 3, -54, -1, -54, -5, -50 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flip"]
+anims/attack = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/possess = ExtResource( 2 )
+anims/walk = SubResource( 4 )
+
+[node name="MountArea" type="Area2D" parent="Flip"]
+position = Vector2( -8, -42 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/MountArea"]
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -26 )
+shape = SubResource( 1 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Life" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, -61 )

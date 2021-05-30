@@ -1,0 +1,154 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/font/default_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/backdrop-city.png" type="Texture" id=2]
+[ext_resource path="res://src/player/Pilot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/backdrop-fire.png" type="Texture" id=4]
+[ext_resource path="res://src/building/Building1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/kaiju/Jupiter.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 484, 4 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 24, 362 )
+
+[node name="Main" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Objective" type="Label" parent="CanvasLayer/UI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = -11.0
+margin_right = 269.0
+margin_bottom = 13.0
+rect_scale = Vector2( 0.3, 0.3 )
+custom_fonts/font = ExtResource( 1 )
+text = "10 buildings left"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HelpText" type="Label" parent="CanvasLayer/UI"]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = -10.0
+margin_right = 269.0
+margin_bottom = 16.0
+rect_scale = Vector2( 0.3, 0.3 )
+custom_fonts/font = ExtResource( 1 )
+text = "Press ? for help"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 0, -4 )
+motion_scale = Vector2( 0.1, 1 )
+
+[node name="Fire" type="Sprite" parent="ParallaxBackground/ParallaxLayer1"]
+position = Vector2( 0, 3 )
+texture = ExtResource( 4 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.2, 1 )
+
+[node name="City" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2( 0, 3 )
+texture = ExtResource( 2 )
+
+[node name="Buildings" type="Node2D" parent="."]
+position = Vector2( 0, 28 )
+
+[node name="Building1-1" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 31, 0 )
+
+[node name="Building1-2" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( -40, 0 )
+
+[node name="Building1-3" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 62, 3 )
+
+[node name="Building1-4" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( -131, 3 )
+
+[node name="Building1-5" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( -179, 0 )
+
+[node name="Building1-6" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 148, 0 )
+
+[node name="Building1-7" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 110, 4 )
+
+[node name="Building1-8" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( -224, 0 )
+
+[node name="Building1-9" parent="Buildings" instance=ExtResource( 5 )]
+position = Vector2( 199, 0 )
+
+[node name="Kaijus" type="Node2D" parent="."]
+position = Vector2( -1, 28 )
+
+[node name="Jupiter" parent="Kaijus" instance=ExtResource( 8 )]
+
+[node name="Jupiter2" parent="Kaijus" instance=ExtResource( 8 )]
+position = Vector2( -83, 0 )
+
+[node name="Pilot" parent="." instance=ExtResource( 3 )]
+z_index = 2
+
+[node name="Camera2D" type="Camera2D" parent="Pilot"]
+position = Vector2( 0, -7 )
+current = true
+zoom = Vector2( 0.75, 0.75 )
+limit_left = -472
+limit_top = -52
+limit_right = 472
+limit_bottom = 28
+smoothing_enabled = true
+drag_margin_top = 1.0
+drag_margin_bottom = 1.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Floor" type="StaticBody2D" parent="." groups=[
+"floor",
+]]
+position = Vector2( 0, 33 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource( 2 )
+
+[node name="Wall1" type="StaticBody2D" parent="." groups=[
+"floor",
+]]
+position = Vector2( -496, 33 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
+position = Vector2( 0, -362 )
+shape = SubResource( 3 )
+
+[node name="Wall2" type="StaticBody2D" parent="." groups=[
+"floor",
+]]
+position = Vector2( 496, 33 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2( 0, -362 )
+shape = SubResource( 3 )

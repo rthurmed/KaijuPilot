@@ -1,0 +1,260 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/pilot-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://src/core/StateMachine.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/blank.png" type="Texture" id=3]
+[ext_resource path="res://src/player/Pilot.gd" type="Script" id=4]
+[ext_resource path="res://src/player/state/Walk.gd" type="Script" id=5]
+[ext_resource path="res://src/player/state/Jetpack.gd" type="Script" id=6]
+[ext_resource path="res://src/player/state/Parachute.gd" type="Script" id=7]
+[ext_resource path="res://src/player/state/Mounted.gd" type="Script" id=8]
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "mounted"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "parachute"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "propelled"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.4
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 2.0
+height = 3.0
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.576159, 1 )
+colors = PoolColorArray( 0.698039, 0.737255, 0.760784, 1, 0.698039, 0.737255, 0.760784, 1, 0.698039, 0.737255, 0.760784, 0 )
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0, 0.503311, 1 )
+colors = PoolColorArray( 1, 0.74902, 0.211765, 1, 1, 0.74902, 0.211765, 1, 1, 0.74902, 0.211765, 0 )
+
+[node name="Pilot" type="KinematicBody2D"]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 1 )
+anims/mounted = SubResource( 2 )
+anims/parachute = SubResource( 3 )
+anims/propelled = SubResource( 4 )
+anims/walk = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -0.5 )
+shape = SubResource( 6 )
+
+[node name="GroundRayCast2D" type="RayCast2D" parent="."]
+position = Vector2( -0.5, 3 )
+enabled = true
+cast_to = Vector2( -0.5, 0.5 )
+
+[node name="GroundRayCast2D2" type="RayCast2D" parent="."]
+position = Vector2( 0.5, 3 )
+enabled = true
+cast_to = Vector2( 0.5, 0.5 )
+
+[node name="GroundRayCast2D3" type="RayCast2D" parent="."]
+position = Vector2( 0, 3 )
+enabled = true
+cast_to = Vector2( 0, 0.3 )
+
+[node name="StuckPreventRayCast2D" type="RayCast2D" parent="."]
+position = Vector2( -2, 2 )
+enabled = true
+cast_to = Vector2( 4, 0 )
+
+[node name="JetpackParticles" type="CPUParticles2D" parent="."]
+z_index = -1
+emitting = false
+amount = 16
+explosiveness = 0.1
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector2( 0, 49 )
+radial_accel = 20.0
+angle = 200.0
+angle_random = 0.4
+scale_amount = 2.5
+scale_amount_random = 0.3
+color_ramp = SubResource( 7 )
+
+[node name="JetpackSparkleParticles" type="CPUParticles2D" parent="."]
+z_index = -1
+emitting = false
+amount = 2
+lifetime = 0.6
+explosiveness = 0.2
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector2( 0, 49 )
+radial_accel = 50.0
+angle = 200.0
+angle_random = 0.4
+scale_amount = 3.5
+scale_amount_random = 0.3
+color_ramp = SubResource( 8 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Meter" type="Control" parent="CanvasLayer/UI"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 24.0
+margin_bottom = 11.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FuelContainer" type="TextureRect" parent="CanvasLayer/UI/Meter"]
+self_modulate = Color( 0.215686, 0.145098, 0.219608, 1 )
+margin_left = 5.96046e-08
+margin_right = 22.0
+margin_bottom = 4.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fuel" type="TextureProgress" parent="CanvasLayer/UI/Meter/FuelContainer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -3.33333
+margin_right = 3.0
+margin_bottom = -1.33333
+rect_scale = Vector2( 10, 1 )
+value = 40.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 3 )
+tint_under = Color( 0.141176, 0.231373, 0.380392, 1 )
+tint_progress = Color( 0.219608, 0.596078, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LifeContainer" type="TextureRect" parent="CanvasLayer/UI/Meter"]
+visible = false
+self_modulate = Color( 0.215686, 0.145098, 0.219608, 1 )
+margin_top = 5.0
+margin_right = 22.0
+margin_bottom = 9.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Life" type="TextureProgress" parent="CanvasLayer/UI/Meter/LifeContainer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -3.33333
+margin_right = 3.0
+margin_bottom = -1.33333
+rect_scale = Vector2( 10, 1 )
+value = 60.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 3 )
+tint_under = Color( 0.478431, 0.129412, 0.227451, 1 )
+tint_progress = Color( 0.882353, 0.254902, 0.254902, 1 )
+
+[node name="StateMachine" parent="." instance=ExtResource( 2 )]
+initial_state = NodePath("Walk")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
+[node name="Jetpack" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="Parachute" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="Mounted" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
