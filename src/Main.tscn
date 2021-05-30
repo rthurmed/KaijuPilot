@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/font/default_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/backdrop-city.png" type="Texture" id=2]
@@ -33,6 +33,21 @@ extents = Vector2( 24, 362 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "end"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/UI/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "end_good"
 tracks/0/type = "value"
 tracks/0/path = NodePath("CanvasLayer/UI/ColorRect:modulate")
 tracks/0/interp = 1
@@ -189,6 +204,9 @@ position = Vector2( -73, 0 )
 [node name="Jupiter3" parent="Kaijus" instance=ExtResource( 8 )]
 position = Vector2( -407, 0 )
 
+[node name="Jupiter4" parent="Kaijus" instance=ExtResource( 8 )]
+position = Vector2( 230, 0 )
+
 [node name="Pilot" parent="." instance=ExtResource( 3 )]
 position = Vector2( 28, -61 )
 z_index = 2
@@ -222,6 +240,8 @@ shape = SubResource( 1 )
 "floor",
 ]]
 position = Vector2( -458, 33 )
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
 position = Vector2( 0, -362 )
@@ -231,6 +251,8 @@ shape = SubResource( 2 )
 "floor",
 ]]
 position = Vector2( 459, 33 )
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
 position = Vector2( 0, -362 )
@@ -238,6 +260,7 @@ shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/end = SubResource( 4 )
+anims/end_good = SubResource( 5 )
 [connection signal="mounted" from="Pilot" to="." method="_on_Pilot_mounted"]
 [connection signal="unmounted" from="Pilot" to="." method="_on_Pilot_unmounted"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

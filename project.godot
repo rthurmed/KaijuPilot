@@ -130,6 +130,7 @@ reset={
 2d_physics/layer_1="player"
 2d_physics/layer_2="kaiju"
 2d_physics/layer_3="building"
+2d_physics/layer_4="boundary"
 
 [rendering]
 

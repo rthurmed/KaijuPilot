@@ -101,6 +101,8 @@ offsets = PoolRealArray( 0, 0.503311, 1 )
 colors = PoolColorArray( 1, 0.74902, 0.211765, 1, 1, 0.74902, 0.211765, 1, 1, 0.74902, 0.211765, 0 )
 
 [node name="Pilot" type="KinematicBody2D"]
+collision_layer = 9
+collision_mask = 9
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
