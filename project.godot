@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/building/Building.gd"
 }, {
+"base": "Kaiju",
+"class": "Jupiter",
+"language": "GDScript",
+"path": "res://src/kaiju/Jupiter.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Kaiju",
+"language": "GDScript",
+"path": "res://src/kaiju/Kaiju.gd"
+}, {
 "base": "Node2D",
 "class": "Life",
 "language": "GDScript",
@@ -36,6 +46,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Building": "",
+"Jupiter": "",
+"Kaiju": "",
 "Life": "",
 "Pilot": "",
 "State": "",

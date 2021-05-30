@@ -104,6 +104,7 @@ colors = PoolColorArray( 1, 0.74902, 0.211765, 1, 1, 0.74902, 0.211765, 1, 1, 0.
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -3 )
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 4
@@ -116,30 +117,30 @@ anims/propelled = SubResource( 4 )
 anims/walk = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -0.5 )
+position = Vector2( 0, -3.5 )
 shape = SubResource( 6 )
 
 [node name="GroundRayCast2D" type="RayCast2D" parent="."]
-position = Vector2( -0.5, 3 )
+position = Vector2( -0.5, 0 )
 enabled = true
 cast_to = Vector2( -0.5, 0.5 )
 
 [node name="GroundRayCast2D2" type="RayCast2D" parent="."]
-position = Vector2( 0.5, 3 )
+position = Vector2( 0.5, 0 )
 enabled = true
 cast_to = Vector2( 0.5, 0.5 )
 
 [node name="GroundRayCast2D3" type="RayCast2D" parent="."]
-position = Vector2( 0, 3 )
 enabled = true
 cast_to = Vector2( 0, 0.3 )
 
 [node name="StuckPreventRayCast2D" type="RayCast2D" parent="."]
-position = Vector2( -2, 2 )
+position = Vector2( -2, -1 )
 enabled = true
 cast_to = Vector2( 4, 0 )
 
 [node name="JetpackParticles" type="CPUParticles2D" parent="."]
+position = Vector2( 0, -3 )
 z_index = -1
 emitting = false
 amount = 16
@@ -156,6 +157,7 @@ scale_amount_random = 0.3
 color_ramp = SubResource( 7 )
 
 [node name="JetpackSparkleParticles" type="CPUParticles2D" parent="."]
+position = Vector2( 0, -3 )
 z_index = -1
 emitting = false
 amount = 2

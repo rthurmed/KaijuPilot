@@ -1,5 +1,8 @@
-extends KinematicBody2D
+class_name Jupiter
+extends Kaiju
 
 
-func _ready():
-	$Flip/AnimationPlayer.play("walk")
+onready var flip = $Flip
+onready var animation = $Flip/AnimationPlayer
+onready var viewing_area = $Flip/ViewingArea
+onready var mount_point = $Flip/MountArea

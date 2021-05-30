@@ -1,19 +1,38 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/font/default_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/backdrop-city.png" type="Texture" id=2]
 [ext_resource path="res://src/player/Pilot.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/backdrop-fire.png" type="Texture" id=4]
 [ext_resource path="res://src/building/Building1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Main.gd" type="Script" id=6]
 [ext_resource path="res://src/kaiju/Jupiter.tscn" type="PackedScene" id=8]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="Animation" id=3]
+resource_name = "mount_zoom"
+length = 0.8
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.75, 0.75 ), Vector2( 0.9, 0.9 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 484, 4 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 24, 362 )
 
 [node name="Main" type="Node2D"]
+script = ExtResource( 6 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -107,10 +126,8 @@ position = Vector2( -1, 28 )
 
 [node name="Jupiter" parent="Kaijus" instance=ExtResource( 8 )]
 
-[node name="Jupiter2" parent="Kaijus" instance=ExtResource( 8 )]
-position = Vector2( -83, 0 )
-
 [node name="Pilot" parent="." instance=ExtResource( 3 )]
+position = Vector2( 28, -61 )
 z_index = 2
 
 [node name="Camera2D" type="Camera2D" parent="Pilot"]
@@ -127,13 +144,16 @@ drag_margin_bottom = 1.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pilot/Camera2D"]
+anims/mount_zoom = SubResource( 3 )
+
 [node name="Floor" type="StaticBody2D" parent="." groups=[
 "floor",
 ]]
 position = Vector2( 0, 33 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Wall1" type="StaticBody2D" parent="." groups=[
 "floor",
@@ -142,7 +162,7 @@ position = Vector2( -496, 33 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
 position = Vector2( 0, -362 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Wall2" type="StaticBody2D" parent="." groups=[
 "floor",
@@ -151,4 +171,6 @@ position = Vector2( 496, 33 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
 position = Vector2( 0, -362 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
+[connection signal="mounted" from="Pilot" to="." method="_on_Pilot_mounted"]
+[connection signal="unmounted" from="Pilot" to="." method="_on_Pilot_unmounted"]
