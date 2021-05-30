@@ -39,3 +39,7 @@ func unmount():
 	emit_signal("unmounted")
 	state_machine.transition("Walk")
 	kaiju = null
+
+
+func is_mounted():
+	return kaiju != null

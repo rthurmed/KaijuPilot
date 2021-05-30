@@ -9,7 +9,7 @@
 [ext_resource path="res://src/kaiju/state/Seeking.gd" type="Script" id=7]
 [ext_resource path="res://src/kaiju/state/Walking.gd" type="Script" id=8]
 [ext_resource path="res://src/kaiju/state/Possessed.gd" type="Script" id=9]
-[ext_resource path="res://src/kaiju/state/AttackingBuilding.gd" type="Script" id=11]
+[ext_resource path="res://src/kaiju/state/Attacking.gd" type="Script" id=10]
 [ext_resource path="res://src/kaiju/MountArea.gd" type="Script" id=12]
 
 [sub_resource type="Animation" id=1]
@@ -220,7 +220,7 @@ script = ExtResource( 8 )
 script = ExtResource( 9 )
 
 [node name="Attacking" type="Node" parent="StateMachine"]
-script = ExtResource( 11 )
+script = ExtResource( 10 )
 [connection signal="animation_finished" from="Flip/AnimationPlayer" to="StateMachine/Attacking" method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="Flip/AttackArea" to="StateMachine/Attacking" method="_on_AttackArea_body_entered"]
 [connection signal="body_entered" from="Flip/MountArea" to="Flip/MountArea" method="_on_MountArea_body_entered"]

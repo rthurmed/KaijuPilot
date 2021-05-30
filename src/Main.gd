@@ -13,8 +13,10 @@ func _ready():
 	for building in get_node("Buildings").get_children():
 		building.connect("death", self, "_on_Building_death")
 
+
 func update_objetive():
 	objective_label.text = str(building_count, " buildings left")
+
 
 func _on_Building_death():
 	building_count -= 1
@@ -22,6 +24,7 @@ func _on_Building_death():
 		animation.play("end")
 	else:
 		update_objetive()
+
 
 func _on_Pilot_mounted():
 	camera_animation.play("mount_zoom")
