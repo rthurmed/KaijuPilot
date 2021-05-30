@@ -4,3 +4,4 @@ extends KinematicBody2D
 
 export var possessed = false
 
+var target_position

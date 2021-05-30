@@ -33,3 +33,9 @@ func mount(kaiju_path: NodePath):
 	kaiju = get_node(kaiju_path)
 	emit_signal("mounted")
 	state_machine.transition("Mounted")
+
+
+func unmount():
+	emit_signal("unmounted")
+	state_machine.transition("Walk")
+	kaiju = null

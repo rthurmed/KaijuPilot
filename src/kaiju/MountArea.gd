@@ -17,5 +17,10 @@ func _on_MountArea_body_exited(body):
 		animation.play_backwards("possess")
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "possess":
+	if anim_name == "possess" and pilot_body:
+		kaiju.state_machine.transition("Possessed")
 		pilot_body.mount(kaiju.get_path())
+
+func call_unmount():
+	if pilot_body:
+		pilot_body.unmount()

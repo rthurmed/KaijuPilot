@@ -21,6 +21,8 @@ func _ready():
 	
 	progress.max_value = total
 	progress.value = value
+	
+	animation.play("show")
 
 
 func percent() -> float:

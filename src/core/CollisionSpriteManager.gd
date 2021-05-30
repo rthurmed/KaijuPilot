@@ -30,7 +30,7 @@ func update_collision_frame(frame: String, enabled: bool):
 	collision_frame.visible = enabled
 	
 	for collider in collision_frame.get_children():
-		collider.disabled = not enabled
+		collider.set_deferred("disabled", not enabled)
 
 
 func _on_Sprite_frame_changed():
