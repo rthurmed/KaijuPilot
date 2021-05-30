@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/font/default_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/Pause.gd" type="Script" id=2]
+
+[node name="Pause" type="CanvasLayer"]
+pause_mode = 2
+layer = 2
+script = ExtResource( 2 )
+
+[node name="UI" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.490196 )
+
+[node name="Label" type="Label" parent="UI"]
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 82.0
+margin_bottom = 29.0
+rect_scale = Vector2( 0.4, 0.4 )
+custom_fonts/font = ExtResource( 1 )
+text = "PAUSED"
+__meta__ = {
+"_edit_use_anchors_": false
+}

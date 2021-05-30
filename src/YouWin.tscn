@@ -33,10 +33,14 @@ position = Vector2( 98, 58 )
 texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 28.0
-margin_top = 11.0
-margin_right = 150.0
-margin_bottom = 35.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -29.0
+margin_top = -30.0
+margin_right = 93.0
+margin_bottom = -6.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = ExtResource( 3 )
 text = "YOU WIN"
@@ -46,10 +50,14 @@ __meta__ = {
 }
 
 [node name="StartOverLabel" type="Label" parent="."]
-margin_left = 32.0
-margin_top = 26.0
-margin_right = 281.0
-margin_bottom = 50.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.0
+margin_top = -14.0
+margin_right = 251.0
+margin_bottom = 10.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = ExtResource( 3 )
 text = "Press \"R\" to try again"
@@ -66,6 +74,7 @@ hframes = 4
 frame = 5
 
 [node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )

@@ -7,6 +7,7 @@ var pilot_body: Pilot = null
 
 
 func _on_MountArea_body_entered(body):
+	if pilot_body and pilot_body.is_mounted(): return
 	if body.name == Constants.player_name:
 		pilot_body = body
 		animation.play("possess")
@@ -17,7 +18,8 @@ func _on_MountArea_body_exited(body):
 		animation.play_backwards("possess")
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "possess" and pilot_body and not pilot_body.is_mounted():
+	if pilot_body and pilot_body.is_mounted(): return
+	if anim_name == "possess" and pilot_body:
 		kaiju.state_machine.transition("Possessed")
 		pilot_body.mount(kaiju.get_path())
 

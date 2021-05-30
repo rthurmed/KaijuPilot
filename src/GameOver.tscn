@@ -50,9 +50,9 @@ hframes = 4
 frame = 5
 
 [node name="Label" type="Label" parent="."]
-margin_left = 28.0
+margin_left = 36.0
 margin_top = 11.0
-margin_right = 150.0
+margin_right = 158.0
 margin_bottom = 35.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = ExtResource( 3 )
@@ -62,9 +62,9 @@ __meta__ = {
 }
 
 [node name="StartOverLabel" type="Label" parent="."]
-margin_left = 32.0
+margin_left = 40.0
 margin_top = 26.0
-margin_right = 281.0
+margin_right = 315.0
 margin_bottom = 50.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = ExtResource( 3 )
@@ -74,6 +74,7 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
