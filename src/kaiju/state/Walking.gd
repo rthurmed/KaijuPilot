@@ -3,7 +3,7 @@ extends State
 
 onready var kaiju: Jupiter = owner
 
-var speed = 400
+var speed = 600
 var min_offset = 30
 
 
@@ -11,7 +11,12 @@ func process(_delta: float):
 	pass
 
 func physics_process(delta: float):
-	var distance = kaiju.target_position - kaiju.global_position
+	var default_target = kaiju.global_position + Vector2(100, 0)
+	var target_position = default_target
+	if has_node(kaiju.target_node_path):
+		target_position = get_node(kaiju.target_node_path).global_position
+	
+	var distance = target_position - kaiju.global_position
 	var direction = Vector2.RIGHT * distance.normalized()
 	
 	if not is_zero_approx(direction.x):

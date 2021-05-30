@@ -197,6 +197,7 @@ position = Vector2( 379, 0 )
 position = Vector2( -1, 28 )
 
 [node name="Jupiter" parent="Kaijus" instance=ExtResource( 8 )]
+position = Vector2( 20, 0 )
 
 [node name="Jupiter2" parent="Kaijus" instance=ExtResource( 8 )]
 position = Vector2( -73, 0 )

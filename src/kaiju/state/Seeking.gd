@@ -32,12 +32,12 @@ func _on_Delay_timeout():
 	# Search new position
 	var found_building_target = false
 	kaiju.seeking_enemy = false
-	var target = kaiju.global_position + Vector2(100, 0)
+	var target_node_path: NodePath
 	
 	for idx in bodies:
 		var body = bodies.get(idx)
 		if body.is_in_group("kaiju") and body.possessed:
-			target = body.global_position
+			target_node_path = body.get_path()
 			kaiju.seeking_enemy = true
 		
 		if (
@@ -46,7 +46,7 @@ func _on_Delay_timeout():
 			body.is_in_group("building")
 		): 
 			found_building_target = true
-			target = body.global_position
+			target_node_path = body.get_path()
 	
-	kaiju.target_position = target
+	kaiju.target_node_path = target_node_path
 	transition("Walking")
