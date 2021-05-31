@@ -20,22 +20,24 @@ func _ready():
 		node.connect("death", self, "_on_Kaiju_death")
 
 
+func _process(_delta):
+	if building_count <= 0:
+		animation.play("end")
+	if kaiju_count <= 1 and get_node("Kaijus").get_children()[0].possessed:
+		animation.play("end_good")
+
+
 func update_objetive():
 	objective_label.text = str(building_count, " buildings left")
 
 
 func _on_Building_death():
 	building_count -= 1
-	if building_count <= 0:
-		animation.play("end")
-	else:
-		update_objetive()
+	update_objetive()
 
 
 func _on_Kaiju_death():
 	kaiju_count -= 1
-	if kaiju_count == 1 and get_node("Kaijus").get_children()[0].possessed:
-		animation.play("end_good")
 
 
 func _on_Pilot_mounted():

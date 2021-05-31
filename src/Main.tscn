@@ -8,7 +8,7 @@
 [ext_resource path="res://src/Main.gd" type="Script" id=6]
 [ext_resource path="res://src/kaiju/Jupiter.tscn" type="PackedScene" id=8]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "mount_zoom"
 length = 0.8
 step = 0.2
@@ -25,10 +25,10 @@ tracks/0/keys = {
 "values": [ Vector2( 0.75, 0.75 ), Vector2( 0.9, 0.9 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 484, 4 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 24, 362 )
 
 [sub_resource type="Animation" id=4]
@@ -172,9 +172,6 @@ position = Vector2( 346, 0 )
 [node name="Building1-13" parent="Buildings" instance=ExtResource( 5 )]
 position = Vector2( 252, 4 )
 
-[node name="Building1-14" parent="Buildings" instance=ExtResource( 5 )]
-position = Vector2( 413, 4 )
-
 [node name="Building1-15" parent="Buildings" instance=ExtResource( 5 )]
 position = Vector2( -332, 4 )
 
@@ -190,23 +187,11 @@ position = Vector2( -293, -1 )
 [node name="Building1-19" parent="Buildings" instance=ExtResource( 5 )]
 position = Vector2( 178, 8 )
 
-[node name="Building1-20" parent="Buildings" instance=ExtResource( 5 )]
-position = Vector2( 379, 0 )
-
-[node name="Building1-21" parent="Buildings" instance=ExtResource( 5 )]
-position = Vector2( 307, 0 )
-
 [node name="Building1-22" parent="Buildings" instance=ExtResource( 5 )]
 position = Vector2( -202, 5 )
 
 [node name="Building1-23" parent="Buildings" instance=ExtResource( 5 )]
-position = Vector2( -360, 5 )
-
-[node name="Building1-24" parent="Buildings" instance=ExtResource( 5 )]
 position = Vector2( -276, 5 )
-
-[node name="Building1-25" parent="Buildings" instance=ExtResource( 5 )]
-position = Vector2( 87, 0 )
 
 [node name="Kaijus" type="Node2D" parent="."]
 position = Vector2( -1, 28 )
@@ -218,7 +203,7 @@ position = Vector2( 20, 0 )
 position = Vector2( -73, 0 )
 
 [node name="Jupiter3" parent="Kaijus" instance=ExtResource( 8 )]
-position = Vector2( -407, 0 )
+position = Vector2( -362, 0 )
 
 [node name="Jupiter4" parent="Kaijus" instance=ExtResource( 8 )]
 position = Vector2( 230, 0 )
@@ -234,9 +219,9 @@ z_index = 2
 position = Vector2( 0, -7 )
 current = true
 zoom = Vector2( 0.9, 0.9 )
-limit_left = -436
+limit_left = -402
 limit_top = -52
-limit_right = 436
+limit_right = 402
 limit_bottom = 28
 smoothing_enabled = true
 drag_margin_top = 1.0
@@ -245,7 +230,7 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pilot/Camera2D"]
-anims/mount_zoom = SubResource( 3 )
+anims/mount_zoom = SubResource( 1 )
 
 [node name="Floor" type="StaticBody2D" parent="." groups=[
 "floor",
@@ -253,29 +238,29 @@ anims/mount_zoom = SubResource( 3 )
 position = Vector2( 0, 33 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Wall1" type="StaticBody2D" parent="." groups=[
 "floor",
 ]]
-position = Vector2( -458, 33 )
-collision_layer = 8
-collision_mask = 8
+position = Vector2( -426, 33 )
+collision_layer = 9
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
 position = Vector2( 0, -362 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Wall2" type="StaticBody2D" parent="." groups=[
 "floor",
 ]]
-position = Vector2( 459, 33 )
-collision_layer = 8
-collision_mask = 8
+position = Vector2( 426, 33 )
+collision_layer = 9
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
-position = Vector2( 0, -362 )
-shape = SubResource( 2 )
+position = Vector2( -1, -362 )
+shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/end = SubResource( 4 )

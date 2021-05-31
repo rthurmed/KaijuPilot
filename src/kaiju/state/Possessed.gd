@@ -6,7 +6,7 @@ extends State
 onready var kaiju: Jupiter = owner
 
 var input: Vector2 = Vector2.ZERO
-var speed = 600
+var speed = 800
 
 
 func process(_delta: float):

@@ -48,5 +48,7 @@ func _on_Delay_timeout():
 			found_building_target = true
 			target_node_path = body.get_path()
 	
+#	print(kaiju.name, " going to ", target_node_path)
+	
 	kaiju.target_node_path = target_node_path
 	transition("Walking")

@@ -72,23 +72,23 @@ tracks/0/keys = {
 "values": [ 1, 2 ]
 }
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 16, 18 )
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=5]
 radius = 6.0
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 89, 19 )
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 23, 26 )
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 17, 26 )
 
 [node name="Jupiter" type="KinematicBody2D" groups=[
 "kaiju",
 ]]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 8
 script = ExtResource( 4 )
 
 [node name="Flip" type="Node2D" parent="."]
@@ -175,7 +175,7 @@ collision_layer = 0
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/AttackArea"]
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 disabled = true
 
 [node name="MountArea" type="Area2D" parent="Flip"]
@@ -183,7 +183,7 @@ position = Vector2( -8, -44 )
 script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/MountArea"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Flip/MountArea"]
 anims/possess = ExtResource( 2 )
@@ -194,11 +194,11 @@ collision_layer = 0
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/ViewingArea"]
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -26 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="Life" parent="." instance=ExtResource( 5 )]
 position = Vector2( 0, -61 )
